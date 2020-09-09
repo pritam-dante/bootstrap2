@@ -109,6 +109,118 @@
       </div>
     </section>
 
+    <!-- HomeIconSection -->
+    <section id="home-icons" class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4 text-center">
+            <i class="fas fa-cog fa-3x mb-2"></i>
+            <h3>Turning Gears</h3>
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Doloremque, sit!
+            </p>
+          </div>
+          <div class="col-md-4 mb-4 text-center">
+            <i class="fas fa-cloud fa-3x mb-2"></i>
+            <h3>Sending Data</h3>
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Doloremque, sit!
+            </p>
+          </div>
+          <div class="col-md-4 mb-4 text-center">
+            <i class="fas fa-cart-plus fa-3x mb-2"></i>
+            <h3>Making Money</h3>
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Doloremque, sit!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Home Heading Section -->
+    <section id="home-heading" class="p-5">
+      <div class="dark-overlay">
+        <div class="row">
+          <div class="col">
+            <div class="container pt-5">
+              <h1>Are you Ready to Get Started</h1>
+              <p class="d-none d-md-block">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+                perferendis distinctio voluptates exercitationem ducimus
+                deleniti, voluptas debitis enim consequuntur minima.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info Section -->
+    <section id="info" class="py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 align-self-center">
+            <h3>Lorem, ipsum.</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit
+              officia minima et esse quod neque ducimus, autem alias laboriosam!
+              Iusto recusandae quod autem!
+            </p>
+            <a href="#" class="btn btn-outline-danger btn-lg">Learn More</a>
+          </div>
+          <div class="col-md-6">
+            <img src="./img/laptop.png" alt="" class="img-fluid" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Play -->
+    <section id="video-play">
+      <div class="dark-overlay">
+        <div class="row">
+          <div class="col">
+            <div class="container p-5">
+              <a
+                href="#"
+                class="video"
+                data-video="https://www.youtube.com/embed/DGc0o4YI6xk"
+                data-toggle="modal"
+                data-target="#videoModal"
+              >
+                <i class="fas fa-play fa-3x"></i>
+              </a>
+              <h1>See What we Do</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Moal -->
+    <div class="modal fade" id="videoModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+            <iframe
+              src=""
+              frameborder="0"
+              height="350"
+              width="100%"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script
       src="https://kit.fontawesome.com/bd1e6ad984.js"
       crossorigin="anonymous"
@@ -132,6 +244,77 @@
     <script>
       //to get the current year for the copyright
       $('year').text(new Date().getFullYear());
+
+      //config slider
+      $('.carousel').carousel({
+        interval: 6000,
+        pause: 'hover',
+      });
+
+      //Video Play
+      $(function () {
+        //Auto play video modal
+        $('.video').click(function () {
+          var theModal = $(this).data('target'),
+            videoSRC = $(this).attr('data-video'),
+            videoSRCauto = videoSRC + '?autoplay=1';
+          $(theModal + ' iframe').attr('src', videoSRCauto);
+          $(theModal + 'button.close').click(function () {
+            $(theModal + 'iframe').attr('src', videoSRC);
+          });
+        });
+      });
+
+      $('#videoModal').on('hide.bs.modal', function (e) {
+        var $if = $(e.delegateTarget).find('iframe');
+        var src = $if.attr('src');
+        $if.attr('src', '/empty.html');
+        $if.attr('src', src);
+      });
+
+      // $('#videoModal').on('hidden.bs.modal', function () {
+      //   $('#videoModal iframe').attr(
+      //     'src',
+      //     $('#videoModal iframe').attr('src')
+      //   );
+      // });
+
+      // $('#videoModal').on('hide.bs.modal', function () {
+      //   var memory = $(this).html();
+      //   $(this).html(memory);
+      // });
+
+      // //navbar collapse after clicking
+      // $('.navbar-nav>li>a').on('click', function () {
+      //   $('.navbar-collapse').collapse('hide');
+      // });
+
+      // //init scrollspy
+      // $('body').scrollspy({ target: '#main-nav' });
+
+      // //add smooth scrolling
+      // $('#main-nav a').on('click', function (e) {
+      //   //check for hash value
+      //   if (this.hash !== '') {
+      //     //prevent the default behavior
+      //     e.preventDefault();
+
+      //     //store hash
+      //     const hash = this.hash;
+
+      //     //animate smooth scroll
+      //     $('html,body').animate(
+      //       {
+      //         scrollTop: $(hash).offset().top,
+      //       },
+      //       900,
+      //       function () {
+      //         //add hash t0 url after scroll
+      //         window.location.hash = hash;
+      //       }
+      //     );
+      //   }
+      // });
     </script>
   </body>
 </html>
